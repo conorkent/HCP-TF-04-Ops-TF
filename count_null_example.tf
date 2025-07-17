@@ -11,6 +11,3 @@ resource "terraform_data" "count_example" {
     }
 }
 
-output "resource_names" {
-    value = [for resource in terraform_data.count_example : resource.input.name]
-}

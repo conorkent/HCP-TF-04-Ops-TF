@@ -1,2 +1,22 @@
-echo ‘.terraform/
-terraform.tfstate*’ > .gitignore
+# Terraform files
+.terraform/
+terraform.tfstate*
+.terraform.lock.hcl
+
+# Terraform variable files
+*.tfvars
+*.tfvars.json
+
+# Crash log files
+crash.log
+crash.*.log
+
+# Override files
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# CLI configuration files
+.terraformrc
+terraform.rc

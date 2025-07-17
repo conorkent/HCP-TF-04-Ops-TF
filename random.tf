@@ -4,7 +4,3 @@ resource "random_password" "example" {
     override_special = "!@#$%^&*()_+"
 }
 
-output "generated_password" {
-    value = random_password.example.result
-    sensitive = true
-}

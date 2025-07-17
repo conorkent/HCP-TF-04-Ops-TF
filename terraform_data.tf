@@ -16,6 +16,3 @@ moved {
   to   = terraform_data.example
 }
 
-output "message" {
-    value = terraform_data.example.output.message
-}

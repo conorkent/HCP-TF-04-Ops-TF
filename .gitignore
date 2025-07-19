@@ -20,3 +20,5 @@ override.tf.json
 # CLI configuration files
 .terraformrc
 terraform.rc
+# VS Code settings (personal preferences)
+.vscode/tasks.json

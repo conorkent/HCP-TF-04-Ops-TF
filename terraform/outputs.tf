@@ -82,3 +82,13 @@ output "east_bucket_name" {
     description = "S3 bucket name in us-east-1"
     value       = aws_s3_bucket.east_bucket.bucket
 }
+# ===========================================
+# FOR_EACH EXAMPLE OUTPUTS
+# ===========================================
+
+output "server_info" {
+    description = "Information about servers created with for_each"
+    value = {
+        for key, server in terraform_data.servers : key => server.input
+    }
+}

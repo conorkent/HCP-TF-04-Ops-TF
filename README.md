@@ -1,37 +1,58 @@
-# Terraform Demo Module
+# Terraform Learning Examples
 
-A simple Terraform module that demonstrates basic functionality with random resources.
+A comprehensive collection of Terraform examples demonstrating various concepts and patterns for infrastructure as code.
 
-## Features
+## Project Structure
 
-- Generates random pet names
-- Creates random passwords
-- Configurable parameters
-- Terraform data resources for demonstration
+All Terraform files are organized in the `terraform/` directory:
 
-## AWS Multi-Region Deployment
-
-This module now supports deploying resources in multiple AWS regions.
-
-### Usage for Multi-Region
-
-```hcl
-module "aws_multi_region" {
-    source = "github.com/yourusername/HCP-TF-04-Ops-TF/aws_multi_region"
-
-    primary_region   = "us-west-1"
-    secondary_region = "us-east-1"
-}
+```
+terraform/
+├── providers.tf          # Provider configurations
+├── variables.tf          # Input variables
+├── outputs.tf           # Output values
+├── main.tf              # Basic null resource example
+├── random.tf            # Random password generation
+├── random_pet.tf        # Random pet name examples
+├── terraform_data.tf    # Terraform data resource examples
+├── count_null_example.tf # Count meta-argument example
+├── for_each_example.tf  # For_each meta-argument example
+└── aws_multi_region.tf  # AWS multi-region deployment
 ```
 
-## AWS Multi-Region Variables
+## Examples Included
 
-| Name             | Description                  | Type   | Default   |
-|------------------|------------------------------|--------|-----------|
-| primary_region   | Primary region for resources | string | us-west-1 |
-| secondary_region | Secondary region for resources| string | us-east-1 |
+### 1. Basic Resources (`main.tf`)
+- Simple null resource with local-exec provisioner
+- Demonstrates basic Terraform resource syntax
 
-## Module Variables
+### 2. Random Resources (`random.tf`, `random_pet.tf`)
+- Random password generation with custom parameters
+- Multiple random pet name configurations
+- Shows different separators and lengths
+
+### 3. Terraform Data Resources (`terraform_data.tf`)
+- Modern replacement for null_resource
+- Demonstrates resource migration with `moved` blocks
+- Local-exec provisioner examples
+
+### 4. Count Meta-Argument (`count_null_example.tf`)
+- Creates multiple similar resources using count
+- Shows how to reference count.index
+- Demonstrates resource naming patterns
+
+### 5. For_Each Meta-Argument (`for_each_example.tf`)
+- **NEW**: Creates resources using for_each with maps
+- Demonstrates `each.key` and `each.value` usage
+- Shows server configuration patterns
+- Example creates web, api, and database server configurations
+
+### 6. AWS Multi-Region Deployment (`aws_multi_region.tf`)
+- S3 bucket creation in multiple regions
+- Provider aliasing for multi-region deployments
+- Cross-region resource management
+
+## Variables
 
 | Name | Description | Type | Default |
 |------|-------------|------|---------|  
@@ -44,56 +65,35 @@ module "aws_multi_region" {
 
 | Name | Description |
 |------|-------------|
-| pet_name | The generated pet name |
+| project_name_output | The project name from variable |
 | project_info | Project information object |
+| simple_message | A simple static message |
+| greeting | Personalized greeting message |
 | random_password | Generated random password (sensitive) |
-
-## AWS Multi-Region Outputs
-
-| Name            | Description                         |
-|-----------------|-------------------------------------|
-| east_bucket_name| S3 bucket name in us-east-1          |
-| west_bucket_name| S3 bucket name in us-west-1          |
-
-## Module Outputs
-
-| Name            | Description                         |
-|-----------------|-------------------------------------|
-| pet_name        | The generated pet name              |
-| project_info    | Project information object          |
-| random_password | Generated random password (sensitive)|
+| pet_name | The generated pet name |
+| short_pet_name | Single word pet name |
+| prefixed_pet_name | 3-word pet name with prefix |
+| message | Message from terraform_data resource |
+| resource_names | List of resource names from count example |
+| server_info | **NEW**: Information about servers created with for_each |
+| west_bucket_name | S3 bucket name in us-west-1 |
+| east_bucket_name | S3 bucket name in us-east-1 |
 
 ## Requirements
 
 - Terraform >= 1.0
 - Random provider ~> 3.0
+- Null provider ~> 3.0
 - AWS provider ~> 5.0
-
-## AWS Setup
-
-### Prerequisites
-- AWS CLI configured with appropriate credentials
-- IAM permissions for S3 bucket creation
-
-### Authentication
-Ensure your AWS credentials are configured:
-```bash
-aws configure
-```
-
-Or set environment variables:
-```bash
-export AWS_ACCESS_KEY_ID="your-access-key"
-export AWS_SECRET_ACCESS_KEY="your-secret-key"
-export AWS_DEFAULT_REGION="us-west-1"
-```
 
 ## Branch Structure
 
+- `main` - Stable examples and documentation
+- `for_each_example` - **Current branch** with for_each examples and reorganized structure
 - `requirement-samples` - Original exercise files
 - `module-structure` - Modularized code structure  
 - `aws-multi-region` - AWS multi-region deployment exercise
 
 ---
 
-*This README was generated with AI assistance for documentation purposes.*
+*This README documents a learning-focused Terraform project with examples ranging from basic to advanced patterns.*
